@@ -4,7 +4,7 @@
     <div class="sidebar-brand-icon">
       <img src="img/logo/attnlg.jpg">
     </div>
-    <div class="sidebar-brand-text mx-3">E-Attendance</div>
+    <div class="sidebar-brand-text mx-3">ClassPlus</div>
   </a>
 
   <!-- Dashboard -->
