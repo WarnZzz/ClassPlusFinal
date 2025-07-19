@@ -151,7 +151,7 @@ if (isset($_POST['save'])) {
                                                 <option value="">--Select User Roles--</option>
                                                 <option value="computer">B.E Computer</option>
                                                 <option value="civil">B.E Civil</option>
-                                                <option value="architecture">Architecture</option>
+                                                <option value="software">B.E software</option>
                                             </select>
                     </div>
                         <div class="col-xl-6">

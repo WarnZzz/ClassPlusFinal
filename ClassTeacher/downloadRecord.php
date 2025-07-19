@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['download'])) {
         $query = "SELECT tblattendance.SymbolNo, tblstudents.firstName, tblstudents.lastName, tblattendance.status, tblattendance.dateTimeTaken
                   FROM tblattendance
                   INNER JOIN tblstudents ON tblstudents.SymbolNo = tblattendance.SymbolNo
-                  WHERE tblattendance.dateTimeTaken = '$dateTaken' 
+                  WHERE DATE(tblattendance.dateTimeTaken) = '$dateTaken' 
                   AND tblattendance.courseId = '$courseId'";
     } else {
         $filename .= "overall";

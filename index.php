@@ -34,7 +34,7 @@ include 'Includes/dbcon.php';
         .hidden { display: none; }
     </style>
 </head>
-<body class="bg-gradient-login" style="background-image: url('img/logo/loral1.jpg');">
+<body class="bg-gradient-login" style="background-image: url('img/loral1.png');">
 <div class="container-login">
     <div class="row justify-content-center">
         <div class="col-xl-10 col-lg-12 col-md-9">

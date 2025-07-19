@@ -92,8 +92,58 @@ echo mysqli_error($conn); // Debugging line to check for errors
       </div>
     </li>
   <?php endforeach; ?>
-  <!-- Logout -->
+
+  <!-- Class Chatrooms -->
   <hr class="sidebar-divider">
+  <div class="sidebar-heading">Class Chatrooms</div>
+  <?php
+  $userId = $_SESSION['userId'];
+  $userRole = $_SESSION['userRole']; // 'student' or 'teacher'
+
+  if ($userRole === 'ClassTeacher') {
+      $query = "SELECT DISTINCT c.Id,
+                   CONCAT(c.Program, ' ', c.`Year(Batch)`, '-', c.section) AS ClassDisplay
+            FROM tblclass c
+            JOIN tblclassarms ca ON ca.ClassId = c.Id
+            WHERE ca.AssignedTo = ?";
+      $stmt = $conn->prepare($query);
+      $stmt->bind_param("s", $userId);
+  } else {
+      $query = "SELECT c.Id,
+                       CONCAT(c.Program, ' ', c.`Year(Batch)`, '-', c.section) AS ClassDisplay
+                FROM tblclass c
+                INNER JOIN tblstudents s ON s.ClassId = c.Id
+                WHERE s.SymbolNo = ?";
+      $stmt = $conn->prepare($query);
+      $stmt->bind_param("i", $userId);
+  }
+
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          echo '<li class="nav-item">
+                  <a class="nav-link" href="classChat.php?classId=' . $row['Id'] . '">
+                      <i class="fas fa-comments"></i>
+                      <span>' . htmlspecialchars($row['ClassDisplay']) . ' Chatroom</span>
+                  </a>
+                </li>';
+      }
+  } else {
+      echo '<li class="nav-item">
+              <a class="nav-link disabled" href="#">
+                  <i class="fas fa-comments"></i>
+                  <span>No Classes Found</span>
+              </a>
+            </li>';
+  }
+  $stmt->close();
+  ?>
+
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <!-- Logout -->
   <li class="nav-item">
     <a class="nav-link" href="logout.php">
       <i class="fas fa-sign-out-alt"></i>

@@ -1,4 +1,8 @@
 <?php
+require '../vendor/autoload.php'; // PHPMailer autoload
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
 
@@ -35,10 +39,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES ('$title', '$description', '$filePath', '$courseId', '$deadline', '$teacherId', '$uploadDate')";
 
         if (mysqli_query($conn, $sql)) {
-            $message = "✅ Assignment uploaded successfully!";
-        } else {
-            $message = "❌ Error: " . mysqli_error($conn);
+    // ✅ Assignment saved, now fetch student emails for this course
+    $studentQuery = "
+        SELECT s.emailAddress
+        FROM tblstudents s
+        INNER JOIN tblclassarms ca ON s.ClassId = ca.ClassId
+        WHERE ca.Id = '$courseId'
+    ";
+    $studentResult = mysqli_query($conn, $studentQuery);
+    $emailAddresses = [];
+    while ($row = mysqli_fetch_assoc($studentResult)) {
+        if (!empty($row['emailAddress'])) {
+            $emailAddresses[] = $row['emailAddress'];
         }
+    }
+
+    if (!empty($emailAddresses)) {
+        $mail = new PHPMailer(true);
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'paudelranjan14@gmail.com';
+            $mail->Password = 'mxxpxoivbkdauvlc';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Sender
+            $mail->setFrom('paudelranjan14@gmail.com', 'PokharaEngineeringCollege');
+
+            // Recipients
+            foreach ($emailAddresses as $email) {
+                $mail->addAddress($email);
+            }
+
+            // Email content
+            $mail->isHTML(false);
+            $mail->Subject = 'New Assignment Uploaded';
+            $mail->Body = "Dear Student,\n\nA new assignment titled \"$title\" has been uploaded for your course.\n\nPlease check it and submit within the deadline: $deadline.\n\nBest Regards,\nYour Teacher";
+
+            $mail->send();
+            $message = "✅ Assignment uploaded successfully and emails sent!";
+        } catch (Exception $e) {
+            $message = "✅ Assignment uploaded, but email failed: {$mail->ErrorInfo}";
+        }
+    } else {
+        $message = "✅ Assignment uploaded. No student emails found to notify.";
+    }
+} else {
+    $message = "❌ Error: " . mysqli_error($conn);
+}
+
     }
 }
 

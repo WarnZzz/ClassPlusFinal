@@ -1,6 +1,7 @@
 <?php 
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
+$statusMsg = "";
 
 $teacherId = $_SESSION['userId'];
 
@@ -89,11 +90,13 @@ while ($row = $result->fetch_assoc()) {
                   $dateTaken = $_POST['dateTaken'];
                   $courseId = $_POST['course'];
 
-                  $query = "SELECT tblattendance.SymbolNo,tblstudents.firstName,tblstudents.lastName,tblattendance.status,tblattendance.dateTimeTaken
-                            FROM tblattendance
-                            INNER JOIN tblstudents ON tblstudents.SymbolNo = tblattendance.SymbolNo
-                            WHERE tblattendance.dateTimeTaken = '$dateTaken' 
-                            AND tblattendance.courseId = '$courseId'";
+                  $query = "SELECT tblattendance.SymbolNo, tblstudents.firstName, tblstudents.lastName, 
+                 tblattendance.status, tblattendance.dateTimeTaken
+                    FROM tblattendance
+                    INNER JOIN tblstudents ON tblstudents.SymbolNo = tblattendance.SymbolNo
+                    WHERE DATE(tblattendance.dateTimeTaken) = '$dateTaken'
+                    AND tblattendance.courseId = '$courseId'";
+;
 
                   $rs = $conn->query($query);
                   $num = $rs->num_rows;
@@ -123,8 +126,9 @@ while ($row = $result->fetch_assoc()) {
                                 <tbody>';
                       
                       while ($rows = $rs->fetch_assoc()) {
-                          $status = $rows['status'] == '1' ? "Present" : "Absent";
-                          $colour = $rows['status'] == '1' ? "#00FF00" : "#FF0000";
+                          $status = ($rows['status'] == 1) ? "Present" : "Absent";
+                          $colour = ($rows['status'] == 1) ? "#00FF00" : "#FF0000";
+
                           $sn++;
                           echo "
                               <tr>

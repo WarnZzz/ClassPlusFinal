@@ -1,6 +1,9 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include '../Includes/dbcon.php';
 include '../Includes/session.php';
+require '../vendor/autoload.php'; 
 
 $teacherId = $_SESSION['userId'];
 
@@ -35,13 +38,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload'])) {
         }
 
         if (move_uploaded_file($fileTmpPath, $destPath)) {
-            $query = "INSERT INTO tblnotes (courseId, title, filePath, uploadedBy, uploadDate)
-                      VALUES ('$courseId', '$noteTitle', '$fileName', '$teacherId', NOW())";
-            mysqli_query($conn, $query);
-            $message = "Note uploaded successfully.";
-        } else {
-            $message = "Failed to move uploaded file. Check folder permissions.";
+    $query = "INSERT INTO tblnotes (courseId, title, filePath, uploadedBy, uploadDate)
+              VALUES ('$courseId', '$noteTitle', '$fileName', '$teacherId', NOW())";
+
+    if (mysqli_query($conn, $query)) {
+        // Step 1: Get ClassId and CourseName from tblclassarms
+        $classQuery = "SELECT ClassId, CourseName FROM tblclassarms WHERE Id = '$courseId'";
+        $classResult = mysqli_query($conn, $classQuery);
+        $classData = mysqli_fetch_assoc($classResult);
+        $classId = $classData['ClassId'];
+        $courseName = $classData['CourseName'];
+
+        // Step 2: Get student emails
+        $studentQuery = "SELECT emailAddress, firstName FROM tblstudents WHERE ClassId = '$classId'";
+        $studentResult = mysqli_query($conn, $studentQuery);
+
+        $emailAddresses = [];
+        $studentNames = [];
+
+        while ($student = mysqli_fetch_assoc($studentResult)) {
+            $emailAddresses[] = $student['emailAddress'];
+            $studentNames[] = $student['firstName']; // optional if you want to personalize
         }
+
+        if (!empty($emailAddresses)) {
+            $mail = new PHPMailer(true);
+            try {
+                // SMTP Configuration
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'paudelranjan14@gmail.com';
+                $mail->Password = 'mxxpxoivbkdauvlc'; // App Password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                // Sender Info
+                $mail->setFrom('paudelranjan14@gmail.com', 'PokharaEngineeringCollege');
+
+                // Recipients
+                foreach ($emailAddresses as $email) {
+                    $mail->addAddress($email);
+                }
+
+                // Email Content
+                $mail->isHTML(true);
+                $mail->Subject = 'New Notes Uploaded: ' . $courseName;
+                $mail->Body = "Dear Student,<br><br>
+                New notes titled <strong>\"$noteTitle\"</strong> have been uploaded for the course <strong>\"$courseName\"</strong>.<br>
+                Please log in to your student portal to download the notes.<br><br>
+                Regards,<br>Your Teacher";
+
+                $mail->send();
+                $message = "Note uploaded and email sent to students successfully.";
+            } catch (Exception $e) {
+                $message = "Note uploaded, but email failed to send. Error: {$mail->ErrorInfo}";
+            }
+        } else {
+            $message = "Note uploaded. No student emails found for this course.";
+        }
+    } else {
+        $message = "Note upload failed (DB insert error).";
+    }
+} else {
+    $message = "File upload failed.";
+}
     } else {
         $message = "No file uploaded or upload error.";
     }
