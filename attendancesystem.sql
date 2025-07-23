@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2025 at 08:37 AM
+-- Generation Time: Jul 23, 2025 at 01:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,7 +65,8 @@ CREATE TABLE `tblassignments` (
 --
 
 INSERT INTO `tblassignments` (`Id`, `Title`, `Description`, `FilePath`, `ClassArmId`, `Deadline`, `UploadedBy`, `UploadDate`, `isDeleted`) VALUES
-(3, 'Assignment I', 'assignment', 'assignment_6849324fe80683.28961846.pdf', 11, '2025-06-11 14:22:00', 16, '2025-06-11 09:37:51', 0);
+(8, 'Assignment I', 'abcd', 'assignment_687a7f530a22b2.76648443.docx', 11, '2025-07-25 22:52:00', 16, '2025-07-18 19:07:31', 0),
+(9, 'Assignment II', 'abcd', 'assignment_687a880bb72192.70305469.pdf', 11, '2025-07-31 23:29:00', 16, '2025-07-18 19:44:43', 0);
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ CREATE TABLE `tblattendance` (
   `Id` int(10) NOT NULL,
   `SymbolNo` int(10) NOT NULL,
   `CourseId` int(11) NOT NULL,
-  `status` varchar(10) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `dateTimeTaken` varchar(20) NOT NULL,
   `joinTime` datetime DEFAULT NULL,
   `leaveTime` datetime DEFAULT NULL,
@@ -89,8 +90,28 @@ CREATE TABLE `tblattendance` (
 --
 
 INSERT INTO `tblattendance` (`Id`, `SymbolNo`, `CourseId`, `status`, `dateTimeTaken`, `joinTime`, `leaveTime`, `durationInMinutes`) VALUES
-(218, 21070565, 11, '1', '2025-06-13', NULL, NULL, NULL),
-(219, 21070565, 11, '1', '2025-06-21', NULL, NULL, NULL);
+(218, 21070565, 11, 1, '2025-06-13', NULL, NULL, NULL),
+(219, 21070565, 11, 1, '2025-06-21', NULL, NULL, NULL),
+(220, 21070565, 11, 1, '2025-06-23', NULL, NULL, NULL),
+(221, 21070579, 11, 1, '2025-06-25', NULL, NULL, NULL),
+(222, 21070575, 11, 1, '2025-06-25', NULL, NULL, NULL),
+(224, 21070565, 11, 1, '2025-06-26 17:40:31', NULL, NULL, NULL),
+(225, 21070562, 11, 0, '2025-07-18 21:56:05', NULL, NULL, NULL),
+(226, 21070565, 11, 1, '2025-07-18 21:56:05', NULL, NULL, NULL),
+(227, 21070575, 11, 0, '2025-07-18 21:56:05', NULL, NULL, NULL),
+(228, 21070579, 11, 0, '2025-07-18 21:56:05', NULL, NULL, NULL),
+(229, 21070562, 11, 1, '2025-07-19 20:44:03', NULL, NULL, NULL),
+(230, 21070565, 11, 0, '2025-07-19 20:44:03', NULL, NULL, NULL),
+(231, 21070575, 11, 0, '2025-07-19 20:44:03', NULL, NULL, NULL),
+(232, 21070579, 11, 0, '2025-07-19 20:44:03', NULL, NULL, NULL),
+(233, 21070562, 11, 0, '2025-07-20 10:19:48', NULL, NULL, NULL),
+(234, 21070565, 11, 1, '2025-07-20 10:19:48', NULL, NULL, NULL),
+(235, 21070575, 11, 0, '2025-07-20 10:19:48', NULL, NULL, NULL),
+(236, 21070579, 11, 0, '2025-07-20 10:19:48', NULL, NULL, NULL),
+(237, 21070562, 11, 0, '2025-07-22 12:19:52', NULL, NULL, NULL),
+(238, 21070565, 11, 1, '2025-07-22 12:19:52', NULL, NULL, NULL),
+(239, 21070575, 11, 0, '2025-07-22 12:19:52', NULL, NULL, NULL),
+(240, 21070579, 11, 0, '2025-07-22 12:19:52', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,7 +187,25 @@ INSERT INTO `tblattendance_sessions` (`Id`, `CourseId`, `UniqueCode`, `TeacherIP
 (60, 11, '7TFDXLZS', '::1', '2025-06-13 10:14:03', '2025-06-13 10:19:03', 'closed', 0),
 (61, 11, '8O0P4R9B', '::1', '2025-06-13 10:15:25', '2025-06-13 10:20:25', 'closed', 0),
 (62, 11, 'KPQN4MTO', '::1', '2025-06-13 10:15:56', '2025-06-13 10:20:56', 'closed', 0),
-(63, 11, '7WT4S1L6', '::1', '2025-06-21 14:49:43', '2025-06-21 14:54:43', 'closed', 0);
+(63, 11, '7WT4S1L6', '::1', '2025-06-21 14:49:43', '2025-06-21 14:54:43', 'closed', 0),
+(64, 11, '67U89J2V', '::1', '2025-06-23 13:15:20', '2025-06-23 13:20:20', 'closed', 0),
+(65, 11, 'QU9IN0AT', '::1', '2025-06-25 14:42:32', '2025-06-25 14:47:32', 'closed', 0),
+(66, 11, 'E92QK4LR', '::1', '2025-06-26 15:23:13', '2025-06-26 15:28:13', 'closed', 0),
+(67, 11, 'GCLW2NX1', '::1', '2025-06-26 21:05:02', '2025-06-26 21:10:02', 'closed', 0),
+(68, 11, 'XW8435CE', '::1', '2025-06-26 21:18:11', '2025-06-26 21:23:11', 'closed', 0),
+(69, 11, 'IHMUTGSJ', '::1', '2025-06-26 21:24:14', '2025-06-26 21:29:14', 'closed', 0),
+(70, 11, 'MH4FBKTR', '::1', '2025-06-26 21:52:31', '2025-06-26 21:57:31', 'closed', 0),
+(71, 11, 'JD0NW9Q3', '::1', '2025-07-18 13:02:43', '2025-07-18 13:07:43', 'closed', 0),
+(72, 11, '2BEX1MO0', '::1', '2025-07-18 13:09:40', '2025-07-18 13:14:40', 'closed', 0),
+(73, 11, 'IDZPR30Y', '::1', '2025-07-18 13:53:44', '2025-07-18 13:58:44', 'closed', 0),
+(74, 11, '3S1QYWVM', '::1', '2025-07-18 14:01:36', '2025-07-18 14:06:36', 'closed', 0),
+(75, 11, 'QEOP4GVM', '::1', '2025-07-18 21:55:08', '2025-07-18 22:00:08', 'closed', 0),
+(76, 11, 'M4RYVNJK', '::1', '2025-07-19 20:42:42', '2025-07-19 20:47:42', 'closed', 0),
+(77, 11, '2NRXUVOL', '::1', '2025-07-20 10:19:09', '2025-07-20 10:24:09', 'closed', 0),
+(78, 11, '8SY0XFV5', '::1', '2025-07-20 10:27:46', '2025-07-20 10:32:46', 'closed', 0),
+(79, 11, 'XST8PYDB', '::1', '2025-07-22 12:11:44', '2025-07-22 12:16:44', 'closed', 0),
+(80, 11, 'A8U0DTOR', '::1', '2025-07-22 12:17:22', '2025-07-22 12:22:22', 'closed', 0),
+(81, 11, 'Y65SPF3O', '::1', '2025-07-22 12:55:41', '2025-07-22 13:00:41', 'active', 0);
 
 -- --------------------------------------------------------
 
@@ -175,11 +214,40 @@ INSERT INTO `tblattendance_sessions` (`Id`, `CourseId`, `UniqueCode`, `TeacherIP
 --
 
 CREATE TABLE `tblattendance_temp` (
-  `Id` int(11) NOT NULL,
-  `SessionId` int(11) NOT NULL,
   `SymbolNo` int(11) NOT NULL,
-  `Timestamp` datetime DEFAULT current_timestamp()
+  `SessionId` int(11) DEFAULT NULL,
+  `UniqueCode` varchar(20) NOT NULL,
+  `MarkedAt` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblchatmessages`
+--
+
+CREATE TABLE `tblchatmessages` (
+  `Id` int(11) NOT NULL,
+  `ClassId` int(11) NOT NULL,
+  `SenderId` int(11) NOT NULL,
+  `SenderRole` enum('student','teacher') NOT NULL,
+  `MessageText` text DEFAULT NULL,
+  `FilePath` varchar(255) DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblchatmessages`
+--
+
+INSERT INTO `tblchatmessages` (`Id`, `ClassId`, `SenderId`, `SenderRole`, `MessageText`, `FilePath`, `CreatedAt`) VALUES
+(5, 1, 21070575, 'student', 'fxfxbfx', NULL, '2025-07-19 13:49:07'),
+(22, 1, 16, 'teacher', 'hllo', NULL, '2025-07-19 14:25:00'),
+(23, 1, 16, 'teacher', 'start', '../uploads/chatfiles/chatfile_687b5b0be1d485.21725395.pdf', '2025-07-19 14:29:59'),
+(24, 1, 16, 'teacher', 'abc', '../uploads/chatfiles/chatfile_687b5ce3c27684.38254013.pdf', '2025-07-19 14:37:51'),
+(25, 1, 21070575, 'student', 'fsgfd', 'uploads/chatfiles/chatfile_687b5dd81a58a1.42566929.php', '2025-07-19 14:41:56'),
+(26, 1, 21070562, 'student', 'subject', NULL, '2025-07-19 20:44:48'),
+(27, 1, 21070565, 'student', 'Hllo', NULL, '2025-07-22 12:53:37');
 
 -- --------------------------------------------------------
 
@@ -254,6 +322,23 @@ INSERT INTO `tblclassteacher` (`Id`, `firstName`, `lastName`, `emailAddress`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tblevents`
+--
+
+CREATE TABLE `tblevents` (
+  `Id` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `EventDate` date NOT NULL,
+  `StartDateTime` datetime DEFAULT NULL,
+  `EndDateTime` datetime DEFAULT NULL,
+  `EndDate` datetime DEFAULT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tblnotes`
 --
 
@@ -273,7 +358,34 @@ CREATE TABLE `tblnotes` (
 
 INSERT INTO `tblnotes` (`id`, `courseId`, `title`, `filePath`, `uploadDate`, `uploadedBy`, `isDeleted`) VALUES
 (5, 11, 'Math IV', 'Math IV.pdf', '2025-06-11 07:15:07', 16, 0),
-(6, 11, 'subject', '8th-semester-syllabus.pdf', '2025-06-13 04:33:40', 16, 0);
+(6, 11, 'subject', '8th-semester-syllabus.pdf', '2025-06-13 04:33:40', 16, 0),
+(7, 11, 'Math IV', 'Bachelor-of-Computer-Engineering.docx', '2025-07-18 16:46:45', 16, 0),
+(8, 11, 'abc', 'Cover Letter.pdf', '2025-07-20 04:38:45', 16, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblroutine`
+--
+
+CREATE TABLE `tblroutine` (
+  `Id` int(11) NOT NULL,
+  `Program` varchar(255) NOT NULL,
+  `Year_Batch` year(4) NOT NULL,
+  `Section` varchar(10) NOT NULL,
+  `Day` varchar(20) NOT NULL,
+  `TimeSlot` varchar(50) NOT NULL,
+  `Subject` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblroutine`
+--
+
+INSERT INTO `tblroutine` (`Id`, `Program`, `Year_Batch`, `Section`, `Day`, `TimeSlot`, `Subject`) VALUES
+(15, 'computer', '2020', '1', 'Saturday', '18:11 - 18:18', 'Math II'),
+(16, 'computer', '2020', '1', 'Monday', '17:23 - 19:26', 'Math II'),
+(17, 'computer', '2020', '1', 'Saturday', '13:24 - 13:26', 'Math I');
 
 -- --------------------------------------------------------
 
@@ -300,7 +412,7 @@ CREATE TABLE `tblstudents` (
 --
 
 INSERT INTO `tblstudents` (`SymbolNo`, `ClassId`, `firstName`, `lastName`, `RegistrationNo`, `Program`, `Year(Batch)`, `emailAddress`, `password`, `webauthn_setup_token`, `webauthn_setup_token_expiry`) VALUES
-(21070562, 1, 'Nikit', 'Pandey', '4-5-6', 'computer', '2020', 'nikitpandey18@gmail.com', 'cd41287b93a9317b6b2d1da8bec1def1', 'b3cf640ed27cb36e8b7bb585cc70628aabb0a4bd37792945d27698f2ebb2785e', '2025-06-14 06:21:15'),
+(21070562, 1, 'Nikit', 'Pandey', '4-5-6', 'computer', '2020', 'nikitpandey18@gmail.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', '', '2025-06-14 06:21:15'),
 (21070565, 1, 'Ranjan', 'Paudel', '1-2-3', 'computer', '2020', 'mvp1lazer@gmail.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', NULL, NULL),
 (21070575, 1, 'Shiva', 'Bhandari', '4-5-6', 'computer', '2020', 'shivabhandari292@gmail.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', NULL, NULL),
 (21070579, 1, 'Suman', 'Sharma', '4-5-6', 'computer', '2020', 'jrsuman2001@gmail.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', NULL, NULL);
@@ -319,15 +431,18 @@ CREATE TABLE `tblsubmissions` (
   `SubmissionDate` datetime NOT NULL,
   `Grade` varchar(10) DEFAULT NULL,
   `Feedback` text DEFAULT NULL,
-  `IsLate` tinyint(1) DEFAULT 0
+  `IsLate` tinyint(1) DEFAULT 0,
+  `Remarks` text DEFAULT NULL,
+  `IsChecked` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblsubmissions`
 --
 
-INSERT INTO `tblsubmissions` (`Id`, `AssignmentId`, `StudentId`, `SubmittedFile`, `SubmissionDate`, `Grade`, `Feedback`, `IsLate`) VALUES
-(0, 3, 21070565, 'submission_684940e9458458.42493575.pdf', '2025-06-11 10:40:09', NULL, NULL, 0);
+INSERT INTO `tblsubmissions` (`Id`, `AssignmentId`, `StudentId`, `SubmittedFile`, `SubmissionDate`, `Grade`, `Feedback`, `IsLate`, `Remarks`, `IsChecked`) VALUES
+(1, 3, 21070565, 'submission_684940e9458458.42493575.pdf', '2025-06-11 10:40:09', NULL, NULL, 0, NULL, 0),
+(2, 8, 21070565, 'submission_687a8525520061.21306560.pdf', '2025-07-18 19:32:21', NULL, NULL, 0, 'good job, keep it up', 1);
 
 -- --------------------------------------------------------
 
@@ -353,7 +468,12 @@ INSERT INTO `tblvirtualclass` (`Id`, `courseId`, `teacherId`, `jitsiLink`, `clas
 (9, 11, 16, 'ClassPlus-684953d6a9f9d', '2025-06-11 15:47:00', 0),
 (10, 11, 16, 'ClassPlus-684ac40b8d65e', '2025-06-12 18:00:00', 0),
 (11, 11, 16, 'ClassPlus-684baa7de897f', '2025-06-13 10:20:00', 0),
-(12, 11, 16, 'ClassPlus-685676e62b6e3', '2025-06-21 15:00:00', 0);
+(12, 11, 16, 'ClassPlus-685676e62b6e3', '2025-06-21 15:00:00', 0),
+(13, 11, 16, 'ClassPlus-68590589e2285', '2025-06-23 13:29:00', 0),
+(14, 11, 16, 'ClassPlus-687bb16e661f7', '2025-07-19 20:39:00', 0),
+(15, 11, 16, 'ClassPlus-687c72672214d', '2025-07-20 10:21:00', 0),
+(16, 11, 16, 'ClassPlus-687c740d3cd7c', '2025-07-20 10:21:00', 0),
+(17, 11, 16, 'ClassPlus-687f2f79b0c55', '2025-07-22 12:13:00', 0);
 
 -- --------------------------------------------------------
 
@@ -368,22 +488,6 @@ CREATE TABLE `tblvirtualsessions` (
   `joinTime` datetime NOT NULL,
   `leaveTime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tblvirtualsessions`
---
-
-INSERT INTO `tblvirtualsessions` (`id`, `virtualclassId`, `studentId`, `joinTime`, `leaveTime`) VALUES
-(1, 9, 21070565, '2025-06-11 15:47:15', NULL),
-(2, 9, 21070565, '2025-06-11 15:49:20', NULL),
-(3, 9, 21070565, '2025-06-11 15:49:43', '2025-06-11 15:50:18'),
-(4, 12, 21070565, '2025-06-21 15:00:32', NULL),
-(5, 12, 21070565, '2025-06-21 15:04:15', NULL),
-(6, 12, 21070565, '2025-06-21 15:05:23', NULL),
-(7, 12, 21070565, '2025-06-21 15:08:17', NULL),
-(8, 12, 21070565, '2025-06-21 15:11:36', NULL),
-(9, 12, 21070565, '2025-06-21 15:19:05', '2025-06-21 15:19:49'),
-(10, 12, 21070565, '2025-06-21 15:20:09', '2025-06-21 15:25:15');
 
 --
 -- Indexes for dumped tables
@@ -423,9 +527,15 @@ ALTER TABLE `tblattendance_sessions`
 -- Indexes for table `tblattendance_temp`
 --
 ALTER TABLE `tblattendance_temp`
+  ADD PRIMARY KEY (`SymbolNo`,`UniqueCode`),
+  ADD KEY `SessionId` (`SessionId`);
+
+--
+-- Indexes for table `tblchatmessages`
+--
+ALTER TABLE `tblchatmessages`
   ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `SessionId` (`SessionId`,`SymbolNo`),
-  ADD KEY `SymbolNo` (`SymbolNo`);
+  ADD KEY `ClassId` (`ClassId`);
 
 --
 -- Indexes for table `tblclass`
@@ -448,12 +558,24 @@ ALTER TABLE `tblclassteacher`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `tblevents`
+--
+ALTER TABLE `tblevents`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `tblnotes`
 --
 ALTER TABLE `tblnotes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `courseId` (`courseId`),
   ADD KEY `uploadedBy` (`uploadedBy`);
+
+--
+-- Indexes for table `tblroutine`
+--
+ALTER TABLE `tblroutine`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `tblstudents`
@@ -477,14 +599,6 @@ ALTER TABLE `tblvirtualclass`
   ADD KEY `tblvirtualclass_ibfk_2` (`teacherId`);
 
 --
--- Indexes for table `tblvirtualsessions`
---
-ALTER TABLE `tblvirtualsessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `virtualclassId` (`virtualclassId`),
-  ADD KEY `studentId` (`studentId`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -498,25 +612,25 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblassignments`
 --
 ALTER TABLE `tblassignments`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tblattendance`
 --
 ALTER TABLE `tblattendance`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
 
 --
 -- AUTO_INCREMENT for table `tblattendance_sessions`
 --
 ALTER TABLE `tblattendance_sessions`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
--- AUTO_INCREMENT for table `tblattendance_temp`
+-- AUTO_INCREMENT for table `tblchatmessages`
 --
-ALTER TABLE `tblattendance_temp`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tblchatmessages`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tblclass`
@@ -537,10 +651,22 @@ ALTER TABLE `tblclassteacher`
   MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT for table `tblevents`
+--
+ALTER TABLE `tblevents`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `tblnotes`
 --
 ALTER TABLE `tblnotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tblroutine`
+--
+ALTER TABLE `tblroutine`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tblstudents`
@@ -549,16 +675,16 @@ ALTER TABLE `tblstudents`
   MODIFY `SymbolNo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21070580;
 
 --
+-- AUTO_INCREMENT for table `tblsubmissions`
+--
+ALTER TABLE `tblsubmissions`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tblvirtualclass`
 --
 ALTER TABLE `tblvirtualclass`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `tblvirtualsessions`
---
-ALTER TABLE `tblvirtualsessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -588,8 +714,14 @@ ALTER TABLE `tblattendance_sessions`
 -- Constraints for table `tblattendance_temp`
 --
 ALTER TABLE `tblattendance_temp`
-  ADD CONSTRAINT `tblattendance_temp_ibfk_1` FOREIGN KEY (`SessionId`) REFERENCES `tblattendance_sessions` (`Id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `tblattendance_temp_ibfk_2` FOREIGN KEY (`SymbolNo`) REFERENCES `tblstudents` (`SymbolNo`) ON DELETE CASCADE;
+  ADD CONSTRAINT `tblattendance_temp_ibfk_1` FOREIGN KEY (`SymbolNo`) REFERENCES `tblstudents` (`SymbolNo`),
+  ADD CONSTRAINT `tblattendance_temp_ibfk_2` FOREIGN KEY (`SessionId`) REFERENCES `tblattendance_sessions` (`Id`);
+
+--
+-- Constraints for table `tblchatmessages`
+--
+ALTER TABLE `tblchatmessages`
+  ADD CONSTRAINT `fk_chat_class` FOREIGN KEY (`ClassId`) REFERENCES `tblclass` (`Id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tblclassarms`
@@ -616,13 +748,6 @@ ALTER TABLE `tblstudents`
 ALTER TABLE `tblvirtualclass`
   ADD CONSTRAINT `tblvirtualclass_ibfk_1` FOREIGN KEY (`courseId`) REFERENCES `tblclassarms` (`Id`) ON DELETE CASCADE,
   ADD CONSTRAINT `tblvirtualclass_ibfk_2` FOREIGN KEY (`teacherId`) REFERENCES `tblclassteacher` (`Id`) ON DELETE CASCADE;
-
---
--- Constraints for table `tblvirtualsessions`
---
-ALTER TABLE `tblvirtualsessions`
-  ADD CONSTRAINT `tblvirtualsessions_ibfk_1` FOREIGN KEY (`virtualclassId`) REFERENCES `tblvirtualclass` (`Id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `tblvirtualsessions_ibfk_2` FOREIGN KEY (`studentId`) REFERENCES `tblstudents` (`SymbolNo`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

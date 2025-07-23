@@ -76,8 +76,6 @@ echo mysqli_error($conn); // Debugging line to check for errors
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Course Tools</h6>
           <a class="collapse-item" href="viewAttendance.php?course_id=<?= $courseId ?>">Attendance Performance</a>
-          <a class="collapse-item" href="academicPerformance.php?course_id=<?= $courseId ?>">Academic Performance</a>
-          <a class="collapse-item" href="materials.php?course_id=<?= $courseId ?>&type=syllabus">Syllabus</a>
           <a class="collapse-item" href="viewNotes.php?course_id=<?= $courseId ?>&type=notes">Notes</a>
           <a class="collapse-item" href="viewAssignment.php?course_id=<?= $courseId ?>&type=assignments">Assignments</a>
 
