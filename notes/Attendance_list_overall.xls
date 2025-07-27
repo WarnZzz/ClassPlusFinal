@@ -1,0 +1,39 @@
+
+        <table border='1'>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Symbol Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th><th>Total Classes</th><th>Present Days</th><th>Absent Days</th><th>Attendance Percentage</th></tr>
+            </thead>
+            <tbody><tr>
+                    <td>1</td>
+                    <td>21070562</td>
+                    <td>Nikit</td>
+                    <td>Pandey</td><td>5</td>
+                      <td>1</td>
+                      <td>4</td>
+                      <td>20.00%</td></tr><tr>
+                    <td>2</td>
+                    <td>21070565</td>
+                    <td>Ranjan</td>
+                    <td>Paudel</td><td>9</td>
+                      <td>8</td>
+                      <td>1</td>
+                      <td>88.89%</td></tr><tr>
+                    <td>3</td>
+                    <td>21070575</td>
+                    <td>Shiva</td>
+                    <td>Bhandari</td><td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>16.67%</td></tr><tr>
+                    <td>4</td>
+                    <td>21070579</td>
+                    <td>Suman</td>
+                    <td>Sharma</td><td>6</td>
+                      <td>1</td>
+                      <td>5</td>
+                      <td>16.67%</td></tr></tbody>
+        </table>

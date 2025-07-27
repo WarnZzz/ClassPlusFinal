@@ -152,7 +152,7 @@ $stmt->close();
 
   <!-- Logout -->
   <li class="nav-item">
-    <a class="nav-link" href="../Includes/logout.php">
+    <a class="nav-link" href="logout.php">
       <i class="fas fa-sign-out-alt"></i>
       <span>Logout</span>
     </a>
